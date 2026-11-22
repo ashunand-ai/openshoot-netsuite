@@ -21,3 +21,26 @@ jobs:
         run: python -m py_compile scripts/openshoot.py
       - name: Run sample CLI
         run: python scripts/openshoot.py --account-id 1234567_SB1 --environment sandbox > /dev/null
+      - name: Validate admin CLI offline report
+        run: |
+          python scripts/admin_readiness.py --account-id 1234567_SB1 --environment sandbox --format json --output admin-report.json
+          python -c "import json; d=json.load(open('admin-report.json')); assert d['release_gate']=='BLOCKED'; assert '1234567-sb1.' in d['endpoints_unverified']['all_toolsets']"
+      - name: Verify strict mode correctly blocks unknown evidence
+        run: |
+          set +e
+          python scripts/admin_readiness.py --account-id 1234567_SB1 --environment sandbox --evidence examples/evidence.example.json --strict --format json > /dev/null
+          status=$?
+          set -e
+          test "$status" -eq 2
+      - name: Build distributable skill ZIP
+        run: |
+          mkdir -p dist/openshoot-netsuite
+          cp SKILL.md dist/openshoot-netsuite/
+          cp -r references scripts examples dist/openshoot-netsuite/
+          cd dist
+          zip -qr skill.zip openshoot-netsuite
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openshoot-netsuite-skill
+          path: dist/skill.zip
+          if-no-files-found: error
