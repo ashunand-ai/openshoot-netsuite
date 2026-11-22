@@ -12,6 +12,12 @@ class TestReadiness(unittest.TestCase):
         self.assertFalse(r["live_connection_attempted"])
         self.assertIn("1234567-sb1.suitetalk.api.netsuite.com", r["candidate_standard_tools_mcp_endpoint"])
 
+    def test_release_preview_domain_mapping(self):
+        r = build_report("1234567_RP", "release-preview")
+        self.assertEqual(r["account_domain_id"], "1234567-rp")
+        self.assertEqual(r["account_id"], "1234567_RP")
+        self.assertFalse(r["endpoint_verified"])
+
     def test_account_input_validation(self):
         for s in ["", "a", "https://example.test", "abc/path", "abc?token=x", "a\nInjected"]:
             with self.subTest(s=s), self.assertRaises(ValueError):
