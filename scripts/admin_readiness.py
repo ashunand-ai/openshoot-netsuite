@@ -87,7 +87,7 @@ def assess(account, environment, evidence=None):
     mandatory = {"non_admin_role", "mcp_permission", "oauth_permission", "data_sharing_approved",
                  "oauth_authorized", "tools_listed", "runtime_role_verified", "read_only_smoke_test"}
     invalid_na = [x["key"] for x in checks if x["key"] in mandatory and x["status"] == "not_applicable"]
-    no_proof = [x["key"] for x in checks if x["status"] == "pass" and not x["reference"].strip()]
+    no_proof = [x["key"] for x in checks if x["status"] in {"pass", "not_applicable"} and not x["reference"].strip()]
     ready = not outstanding and not invalid_na and not no_proof
     return {
         "product": "OpenShoot NetSuite", "version": "0.2.0",
