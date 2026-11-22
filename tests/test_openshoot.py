@@ -10,7 +10,7 @@ class TestReadiness(unittest.TestCase):
         r = build_report("1234567_SB1", "sandbox")
         self.assertEqual(r["status"], "OFFLINE_PREPARATION_ONLY")
         self.assertFalse(r["live_connection_attempted"])
-        self.assertIn("1234567_sb1.suitetalk.api.netsuite.com", r["candidate_standard_tools_mcp_endpoint"])
+        self.assertIn("1234567-sb1.suitetalk.api.netsuite.com", r["candidate_standard_tools_mcp_endpoint"])
 
     def test_account_input_validation(self):
         for s in ["", "a", "https://example.test", "abc/path", "abc?token=x", "a\nInjected"]:
