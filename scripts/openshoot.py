@@ -11,10 +11,11 @@ ENDPOINT = "https://{account}.suitetalk.api.netsuite.com/services/mcp/v1/suiteap
 def validate_account_id(account_id):
     if not isinstance(account_id, str) or not VALID_ACCOUNT.fullmatch(account_id):
         raise ValueError("Account ID must contain only letters, digits, hyphen or underscore, with 2-80 characters.")
-    return account_id.lower()
+    return account_id.upper()
 
 def build_report(account_id, environment="unknown", client="claude"):
     account_id = validate_account_id(account_id)
+    domain_id = account_id.lower().replace("_", "-")
     if environment not in {"unknown", "sandbox", "production", "release-preview"}:
         raise ValueError("Invalid environment.")
     if client not in {"claude", "chatgpt", "other"}:
@@ -26,7 +27,9 @@ def build_report(account_id, environment="unknown", client="claude"):
         "account_id": account_id,
         "environment_user_supplied": environment,
         "client_user_supplied": client,
-        "candidate_standard_tools_mcp_endpoint": ENDPOINT.format(account=account_id),
+        "candidate_standard_tools_mcp_endpoint": ENDPOINT.format(account=domain_id),
+        "account_domain_id": domain_id,
+        "endpoint_verified": False,
         "live_connection_attempted": False,
         "role_permissions_verified": False,
         "account_features_verified": False,
@@ -68,6 +71,8 @@ def main(argv=None):
         parser.error(str(exc))
     rendered = json.dumps(report, indent=2) + "\n"
     if args.output:
+        if args.output.exists() and args.output.is_symlink():
+            parser.error("Refusing to write through a symlink")
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(rendered, encoding="utf-8")
         print("Saved offline readiness report: " + str(args.output))
