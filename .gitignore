@@ -7,3 +7,6 @@ readiness.json
 *readiness*.json
 .pytest_cache/
 .DS_Store
+evidence.private.json
+report.private.json
+readiness.md
