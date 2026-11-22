@@ -1,0 +1,82 @@
+{
+  "account_confirmed": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "features_enabled": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "standard_tools_installed": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "non_admin_role": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "mcp_permission": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "oauth_permission": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "rest_permission": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "file_cabinet_access": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "data_sharing_approved": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "oauth_authorized": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "integration_record_verified": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "tools_listed": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "runtime_role_verified": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "read_only_smoke_test": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "customization_reviewed": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  },
+  "audit_logged": {
+    "status": "unknown",
+    "reference": "",
+    "observed_at": ""
+  }
+}
