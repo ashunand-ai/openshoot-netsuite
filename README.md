@@ -8,7 +8,7 @@
 
 Oracle already provides the native **NetSuite AI Connector Service** and MCP Standard Tools SuiteApp. Oracle's 2026.2 documentation also describes a SuiteSkills plug-in with **48 business skills**. OpenShoot does **not** replicate Oracle's tools: it makes the *customer-specific preparation and evidence-gathering process* easier to repeat.
 
-Use OpenShoot to validate an account ID's format, construct a candidate account-specific MCP endpoint, generate a checklist of prerequisites, and document outstanding verification work. This helps administrators avoid paying for reusable boilerplate while recognising that complex implementations still require professional expertise.
+Use OpenShoot to validate an account ID's format, construct a candidate account-specific MCP endpoint (including NetSuite sandbox underscore-to-hyphen conversion), generate a checklist of prerequisites, and document outstanding verification work. This helps administrators avoid paying for reusable boilerplate while recognising that complex implementations still require professional expertise.
 
 ## Quick start (Python 3.10+, standard library only)
 
@@ -19,7 +19,7 @@ python scripts/openshoot.py --account-id 1234567_SB1 --environment sandbox --out
 python -m unittest discover -s tests -v
 ```
 
-Replace the example account ID with the intended NetSuite account ID. Never publish customer-specific reports, secrets or data. The report's URL is a **template**, not a verified connection.
+Replace the example account ID with the intended NetSuite account ID. Never publish customer-specific reports, secrets or data. The report's URL is a **template**, not a verified connection. NetSuite account IDs such as `1234567_SB1` map to domain IDs `1234567-sb1`; this is validated in our unit tests.
 
 ## Actual functional scope
 
@@ -28,12 +28,16 @@ Replace the example account ID with the intended NetSuite account ID. Never publ
 | Validate basic account ID syntax | Implemented offline |
 | Generate Standard Tools MCP endpoint template | Implemented offline |
 | Produce JSON preparation report and administrator checklist | Implemented offline |
-| Run local unit tests | Implemented |
+| Run local unit tests | Implemented (and GitHub Actions CI) |
 | Reusable AI operating Skill | Included as SKILL.md |
 | Authenticate with NetSuite/Claude | **Not implemented** |
 | Discover live role permissions or metadata | **Not implemented** |
 | Create or alter NetSuite records | **Not implemented** |
 | Install SuiteApps or deploy custom tools | **Not implemented** |
+
+## Verification and reproducibility
+
+The GitHub Actions workflow runs the Python unit tests on every push and pull request. A passing offline test is **not** proof of NetSuite connectivity. See [release acceptance](references/release-acceptance.md) for release claims and evidence boundaries.
 
 ## Guided real-world integration
 
