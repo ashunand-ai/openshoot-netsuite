@@ -1,8 +1,8 @@
 # OpenShoot NetSuite
 
-**Free, open-source NetSuite AI Connector readiness toolkit (v0.1).**
+**Free, open-source, administrator-guided NetSuite AI Connector readiness toolkit (v0.2).**
 
-> **Release scope:** offline preparation and documentation. This is **not** a live MCP connector, OAuth integration, or automatic NetSuite deployment. Not affiliated with Oracle, NetSuite or Anthropic.
+> **Release scope:** offline preparation, administrator setup walkthrough and evidence-based readiness auditing. This is **not** a live MCP connector, OAuth integration, or automatic NetSuite deployment. Not affiliated with Oracle, NetSuite or Anthropic.
 
 ## What problem does this solve?
 
@@ -39,6 +39,17 @@ Replace the example account ID with the intended NetSuite account ID. Never publ
 
 The GitHub Actions workflow runs the Python unit tests on every push and pull request. A passing offline test is **not** proof of NetSuite connectivity. See [release acceptance](references/release-acceptance.md) for release claims and evidence boundaries.
 
+## Step-by-step administrator workflow and evidence gate
+
+Follow [the detailed system-administrator onboarding guide](references/sysadmin-onboarding.md). It covers features, SuiteApp installation, OAuth/PKCE, role and File Cabinet access, both supported endpoint choices, runtime verification, customisations and troubleshooting. Generate an evidence report from the example fixture:
+
+```bash
+python scripts/admin_readiness.py --account-id 1234567_SB1 --environment sandbox --format markdown --output readiness.md
+python scripts/admin_readiness.py --account-id 1234567_SB1 --environment sandbox --evidence examples/evidence.example.json --format json --strict
+```
+
+The second command intentionally exits **2** while the checklist is incomplete. User-supplied PASS evidence with references yields `EVIDENCE_COMPLETE_UNVERIFIED_EXTERNALLY`, **never** independent certification. No credentials are read or network requests made.
+
 ## Guided real-world integration
 
 Follow [the deployment guide](references/deployment.md). Administrators must use Oracle-supported authentication and inspect role-level access in their own environments. Connection, permissions, and any 2026.2 feature availability must be checked against the actual tenant.
@@ -58,9 +69,9 @@ Refer to current Oracle documentation, not assumptions. Client compatibility, to
 
 ## Roadmap
 
-- v0.2: optional authorised read-only MCP capability probe
-- v0.3: permission and metadata evidence report
-- v0.4: implementation drift comparison
+- v0.3: optional authorised read-only MCP capability probe
+- v0.4: live permission and metadata evidence report
+- v0.5: implementation drift comparison
 
 Contributions: [CONTRIBUTING.md](CONTRIBUTING.md). Security: [SECURITY.md](SECURITY.md). Public announcement: [community/LINKEDIN_POST.md](community/LINKEDIN_POST.md).
 
