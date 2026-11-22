@@ -31,6 +31,12 @@ class AdminReadinessTests(unittest.TestCase):
         data["oauth_authorized"] = {"status": "not_applicable"}
         r = mod.assess("1234567", "sandbox", data)
         self.assertEqual(r["release_gate"], "BLOCKED")
+    def test_not_applicable_requires_reference(self):
+        data = {key: {"status": "pass", "reference": "documented"} for key, _, _ in mod.CHECKS}
+        data["customization_reviewed"] = {"status": "not_applicable"}
+        r = mod.assess("1234567", "sandbox", data)
+        self.assertEqual(r["release_gate"], "BLOCKED")
+
     def test_reject_unknown_fields(self):
         import json, tempfile
         with tempfile.TemporaryDirectory() as d:
