@@ -18,3 +18,7 @@ description: Guide secure NetSuite AI Connector readiness, MCP preparation, leas
 11. Do not represent Oracle's native MCP tools or business SuiteSkills as OpenShoot-built features.
 
 Produce an evidence table, readiness checklist, unknowns, safe next steps and handover.
+
+## Feature education
+
+For requests to explain a new NetSuite feature, produce a how-to lesson, or develop a training video, read [academy/SKILL.md](academy/SKILL.md) and select a source-backed topic from [academy/catalog.json](academy/catalog.json). Never describe a scripted video as recorded, or Oracle SuiteSkills as independently created by OpenShoot.
