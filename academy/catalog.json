@@ -1,0 +1,80 @@
+[
+  {
+    "id": "netsuite-mcp-claude",
+    "title": "Connect Claude to NetSuite without custom middleware",
+    "audience": "NetSuite administrators",
+    "release": "2026.2",
+    "source_url": "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_0714082142.html",
+    "status": "scripted",
+    "readiness": "Check installed Standard Tools SuiteApp, OAuth, account release, user role, and approved AI client",
+    "risk": "configuration",
+    "outcome": "Documented native MCP connection plan and read-only verification evidence",
+    "lesson_path": "academy/lessons/netsuite-mcp-claude.md",
+    "video_script": "academy/videos/netsuite-mcp-claude.md"
+  },
+  {
+    "id": "netsuite-suiteskills",
+    "title": "Use Oracle's 48 NetSuite SuiteSkills before buying custom AI workflows",
+    "audience": "Finance leaders and administrators",
+    "release": "2026.2",
+    "source_url": "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_4123813814.html",
+    "status": "scripted",
+    "readiness": "Check eligible supported AI platform, Oracle SuiteSkills availability, NetSuite role and connector access",
+    "risk": "read-only",
+    "outcome": "Choose an Oracle-supported native skill for a permitted business use case",
+    "lesson_path": "academy/lessons/netsuite-suiteskills.md",
+    "video_script": "academy/videos/netsuite-suiteskills.md"
+  },
+  {
+    "id": "saved-search-rest",
+    "title": "Run NetSuite saved searches with the new REST Web Services support",
+    "audience": "NetSuite analysts and developers",
+    "release": "2026.2 September",
+    "source_url": "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_0804090827.html",
+    "status": "scripted",
+    "readiness": "Confirm REST Web Services permission, approved OAuth client, a permitted saved search and correct account-specific REST URL",
+    "risk": "read-only",
+    "outcome": "Validated REST saved-search list and result retrieval plan",
+    "lesson_path": "academy/lessons/saved-search-rest.md",
+    "video_script": "academy/videos/saved-search-rest.md"
+  },
+  {
+    "id": "ask-oracle-saved-search",
+    "title": "Ask Oracle to explain an authorised saved search",
+    "audience": "CFOs and analysts",
+    "release": "2026.2 August",
+    "source_url": "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_1175030259.html",
+    "status": "scripted",
+    "readiness": "Confirm NetSuite Next / Ask Oracle availability and role access; identify an existing accessible saved search",
+    "risk": "read-only",
+    "outcome": "Reproducible prompt and source-check method for a saved-search summary",
+    "lesson_path": "academy/lessons/ask-oracle-saved-search.md",
+    "video_script": "academy/videos/ask-oracle-saved-search.md"
+  },
+  {
+    "id": "pricing-performance",
+    "title": "Find margin leaks with Item Pricing Performance Workbook",
+    "audience": "CFOs and sales operations",
+    "release": "2026.2 August-September",
+    "source_url": "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/article_155557612.html",
+    "status": "scripted",
+    "readiness": "Confirm Item Pricing Performance Workbook and relevant analytics permissions are available",
+    "risk": "read-only",
+    "outcome": "Item margin review and pricing anomaly checklist",
+    "lesson_path": "academy/lessons/pricing-performance.md",
+    "video_script": "academy/videos/pricing-performance.md"
+  },
+  {
+    "id": "xlsx-export",
+    "title": "Export NetSuite saved searches and reports to XLSX in 2026.2",
+    "audience": "Finance users",
+    "release": "2026.2",
+    "source_url": "https://docs.oracle.com/en/cloud/saas/netsuite/ns-online-help/section_N3949039.html",
+    "status": "scripted",
+    "readiness": "Confirm the account is upgraded to NetSuite 2026.2 and you can access a permitted report",
+    "risk": "read-only",
+    "outcome": "Verified, access-controlled XLSX export procedure",
+    "lesson_path": "academy/lessons/xlsx-export.md",
+    "video_script": "academy/videos/xlsx-export.md"
+  }
+]
