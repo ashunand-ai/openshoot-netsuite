@@ -33,6 +33,11 @@ Every lesson has a companion [short video production script](videos/), a source 
 6. Get a functional reviewer to inspect financial, security or account-specific claims.
 7. Publish the video separately, add its real URL and update catalog status to `published` only then.
 
+## Market strategy and editorial pipeline
+
+- [Open-source SI substitution strategy](STRATEGY.md)
+- [Ten next release-driven tutorial ideas](BACKLOG.md)
+
 ## What we don't promise
 
 - That NetSuite's newest features are available in all customer accounts
