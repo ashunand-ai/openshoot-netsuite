@@ -67,6 +67,12 @@ Integrators can charge for connection assessments, role reviews and onboarding. 
 
 Refer to current Oracle documentation, not assumptions. Client compatibility, tool permissions and availability may change.
 
+## Free NetSuite Academy — feature how-to lessons
+
+The new [OpenShoot NetSuite Academy](academy/README.md) converts verified NetSuite 2026.2 announcements into **six guided lessons**, **six recording-ready short-video scripts** and a separate [teaching Skill](academy/SKILL.md). The curriculum covers native MCP setup, Oracle SuiteSkills, REST saved searches, Ask Oracle, pricing analytics and XLSX exports. Every tutorial has an Oracle source, role and readiness checks, steps, verification and a video storyboard.
+
+**Current status:** Written tutorials and production scripts are committed. No rendered instructional videos or live tenant demonstrations are claimed. The repository's CI now checks academy catalog integrity and unit tests.
+
 ## Roadmap
 
 - v0.3: optional authorised read-only MCP capability probe
