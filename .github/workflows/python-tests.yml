@@ -48,3 +48,15 @@ jobs:
         run: python academy/scripts/validate_catalog.py academy/catalog.json --root .
       - name: Run NetSuite Academy tests
         run: python -m unittest discover -s academy/tests -v
+      - name: Package independent NetSuite Academy Skill
+        run: |
+          mkdir -p dist/openshoot-netsuite-academy
+          cp academy/SKILL.md academy/README.md academy/catalog.json dist/openshoot-netsuite-academy/
+          cp -r academy/lessons academy/videos academy/scripts academy/tests dist/openshoot-netsuite-academy/
+          cd dist
+          zip -qr academy-skill.zip openshoot-netsuite-academy
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openshoot-netsuite-academy-skill
+          path: dist/academy-skill.zip
+          if-no-files-found: error
