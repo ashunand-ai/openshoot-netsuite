@@ -60,3 +60,9 @@ jobs:
           name: openshoot-netsuite-academy-skill
           path: dist/academy-skill.zip
           if-no-files-found: error
+      - name: Validate executive AI industry-role catalog
+        run: python -m unittest discover -s academy/executive-ai/tests -v
+      - name: Syntax-check executive learner and backend JS
+        run: |
+          node --check academy/executive-ai/hatchable/api/pathway.js
+          node --check academy/executive-ai/hatchable/public/pathway.js
