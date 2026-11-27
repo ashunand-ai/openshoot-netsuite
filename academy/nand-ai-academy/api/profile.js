@@ -1,0 +1,3 @@
+import {db} from "hatchable";
+export const access = "user";
+export const methods=["POST"];export default async function(req,res){const name=String(req.body?.name||"").trim().slice(0,90);if(name.length<2)return res.status(400).json({error:"Name too short"});await db.query("INSERT INTO profiles(user_id,display_name,role) VALUES($1,$2,'student') ON CONFLICT(user_id) DO UPDATE SET display_name=EXCLUDED.display_name",[req.user.id,name]);res.json({ok:true})}
