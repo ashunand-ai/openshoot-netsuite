@@ -1,0 +1,1 @@
+INSERT INTO courses(title,subject,level,description,accent) SELECT 'Mathematics Foundations','Mathematics','Years 7–9','Build confidence with number sense, algebra and real-world problem solving.','#577CDA' WHERE NOT EXISTS (SELECT 1 FROM courses WHERE title='Mathematics Foundations')
