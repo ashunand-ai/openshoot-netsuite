@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Request free Nand AI Academy student registration. Your application is reviewed before account access is granted."><title>Request Registration | Nand AI Academy</title><link rel="stylesheet" href="/style.css"></head>
+<body><header><a class="brand" href="/">Nand<span style="color:#6382df">.</span> <b>AI Academy</b></a><nav class="nav"><a href="/">Home</a><a href="/academy">AI Learning Pathways</a><a href="/login?next=/portal">Student sign in</a></nav></header>
+<main class="content" style="max-width:810px;margin:0 auto;padding:50px 22px">
+<div class="eyebrow">FREE COURSES · APPROVAL-BASED ENROLMENT</div><h1>Request student registration.</h1><p class="muted">Tell us what you want to learn. We review each request and email approved learners their login instructions. This form does not immediately create an account or enrol you in a course.</p>
+<section class="panel" style="margin-top:28px"><form id="register-form">
+<div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px">
+<div><label for="first_name">First name *</label><input class="field" id="first_name" name="first_name" maxlength="70" autocomplete="given-name" required></div>
+<div><label for="last_name">Last name *</label><input class="field" id="last_name" name="last_name" maxlength="70" autocomplete="family-name" required></div>
+<div><label for="mobile">Mobile number *</label><input class="field" id="mobile" name="mobile" type="tel" autocomplete="tel" maxlength="30" placeholder="+61 4XX XXX XXX" required></div>
+<div><label for="email">Email address *</label><input class="field" id="email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+<div><label for="level">Your current level *</label><select class="field" name="level" id="level" required><option value="">Choose level</option><option>Beginner</option><option>Learner</option><option>Advanced</option></select></div>
+<div><label for="industry">Industry *</label><select class="field" name="industry" id="industry" required><option value="">Choose industry</option><option>Technology &amp; Software</option><option>Finance &amp; Accounting</option><option>Professional Services</option><option>Manufacturing &amp; Distribution</option><option>Retail &amp; Ecommerce</option><option>Healthcare &amp; NDIS</option><option>Education</option><option>Government &amp; Nonprofit</option><option>Other</option></select></div>
+<div><label for="learner_role">Your role *</label><select class="field" name="learner_role" id="learner_role" required><option value="">Choose role</option><option>Student / Learner</option><option>NetSuite Administrator</option><option>Finance / CFO</option><option>Accountant / Controller</option><option>Developer / IT</option><option>Operations Manager</option><option>Business Owner / Executive</option><option>Consultant / SI</option><option>Other</option></select></div>
+</div>
+<div style="margin-top:18px"><label for="objective">What do you want to achieve from the course? *</label><textarea class="field" name="objective" id="objective" minlength="15" maxlength="1200" rows="5" placeholder="For example, I want to learn how to connect Claude to NetSuite, configure roles, and create useful how-to videos for my team." required></textarea></div>
+<div style="position:absolute;left:-10000px" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+<label style="display:flex;gap:10px;align-items:flex-start;margin:20px 0"><input name="consent" type="checkbox" required style="margin-top:5px"><span class="muted">I agree that Nand AI Academy may store these details to review my application and contact me about learning access. No automatic account is created. I can request correction or deletion by contacting the academy.</span></label>
+<button class="btn" id="submit" type="submit">Submit registration request →</button><p id="status" class="muted" role="status" aria-live="polite"></p></form></section>
+<p class="micro">Free courses · Manual approval · Existing student accounts remain protected.</p>
+</main><footer class="footer">© Nand AI Academy · Practical learning, at your pace.</footer>
+<script>
+const form=document.getElementById('register-form'),button=document.getElementById('submit'),status=document.getElementById('status');
+form.addEventListener('submit',async e=>{
+e.preventDefault();if(button.disabled)return;button.disabled=true;button.textContent='Submitting request…';status.textContent='';
+const fd=new FormData(form),payload=Object.fromEntries(fd.entries());payload.consent=fd.get('consent')==='on';
+try{const r=await fetch('/api/registration',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const j=await r.json().catch(()=>({}));if(!r.ok)throw Error(j.error||'Please try again.');form.reset();status.textContent=j.message||'Request received.';button.textContent='Request received';}
+catch(err){status.textContent=err.message;button.disabled=false;button.textContent='Submit registration request →';}
+});
+</script></body></html>
