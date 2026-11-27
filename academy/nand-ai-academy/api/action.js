@@ -1,0 +1,8 @@
+import {db} from "hatchable";
+export const access = "user";
+export const methods=["POST"];
+export default async function(req,res){const uid=req.user.id,b=req.body||{},id=String(b.id||"");if(!/^[0-9a-f-]{36}$/i.test(id))return res.status(400).json({error:"Invalid ID"});
+if(b.type==="enroll"){const c=await db.query("SELECT id FROM courses WHERE id=$1 AND published=TRUE",[id]);if(!c.rows.length)return res.status(404).json({error:"Not found"});await db.query("INSERT INTO enrollments(user_id,course_id) VALUES($1,$2) ON CONFLICT DO NOTHING",[uid,id]);return res.json({ok:true})}
+if(b.type==="complete"){const q=await db.query("SELECT 1 FROM lessons l JOIN enrollments e ON e.course_id=l.course_id WHERE l.id=$1 AND e.user_id=$2",[id,uid]);if(!q.rows.length)return res.status(403).json({error:"Not enrolled"});await db.query("INSERT INTO lesson_progress(user_id,lesson_id) VALUES($1,$2) ON CONFLICT DO NOTHING",[uid,id]);return res.json({ok:true})}
+if(b.type==="submit"){const q=await db.query("SELECT 1 FROM assignments a JOIN enrollments e ON e.course_id=a.course_id WHERE a.id=$1 AND e.user_id=$2",[id,uid]);if(!q.rows.length)return res.status(403).json({error:"Not enrolled"});const answer=String(b.answer||"").trim().slice(0,10000);if(answer.length<5)return res.status(400).json({error:"Please enter an answer"});await db.query("INSERT INTO submissions(assignment_id,user_id,answer) VALUES($1,$2,$3) ON CONFLICT(assignment_id,user_id) DO UPDATE SET answer=EXCLUDED.answer,submitted_at=now(),score=NULL,feedback=NULL",[id,uid,answer]);return res.json({ok:true})}
+res.status(400).json({error:"Unsupported action"});}
