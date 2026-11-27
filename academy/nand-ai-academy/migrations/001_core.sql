@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS profiles (user_id TEXT PRIMARY KEY, display_name TEXT NOT NULL, role TEXT NOT NULL DEFAULT 'student' CHECK (role IN ('student','tutor','guardian','admin')), created_at TIMESTAMPTZ NOT NULL DEFAULT now())
