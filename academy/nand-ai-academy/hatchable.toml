@@ -1,0 +1,32 @@
+name = "Nand AI Academy"
+[auth]
+enabled = true
+signup = "invite"
+
+[db.tables.ai_assessments]
+read = "own"
+write = "own"
+
+[db.tables.ai_module_progress]
+read = "own"
+write = "own"
+
+[db.tables.enrollments]
+read = "own"
+write = "own"
+
+[db.tables.lesson_progress]
+read = "own"
+write = "own"
+
+[db.tables.submissions]
+read = "own"
+write = "own"
+
+[db.tables.executive_learning_profiles]
+read = "own"
+write = "own"
+
+[db.tables.executive_usecase_progress]
+read = "own"
+write = "own"
